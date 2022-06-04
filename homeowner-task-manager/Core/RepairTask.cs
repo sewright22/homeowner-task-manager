@@ -14,6 +14,27 @@ namespace Core
             this.Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Calculates the number of days until the due date.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public int CalculateNumberOfDaysTilDueDate()
+        {
+            // Check if Due date is less than today.
+            if (this.DueDate < DateTime.Now)
+            {
+                throw new ArgumentOutOfRangeException("Due date is in the past.");
+            }
+
+            return (int)Math.Floor(this.DueDate.Subtract(DateTime.Now).TotalDays);
+        }
+
+        public void PerformExample()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
